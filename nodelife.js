@@ -35,19 +35,13 @@ function print(a) {
         }
         process.stdout.write("|\n")
     }
-    console.log("gen " + gen)
 }
 
-// curr = new Array(width * height).fill(0);
-// curr[840] = 1
-// curr[841] = 1
-// curr[842] = 1
 curr = Array.from({length: width * height},
                   () => Math.floor(Math.random() * 2))
 next = Array.from({length: width * height},
                   () => Math.floor(Math.random() * 2))
 while (true) {
-    console.log("gen " + gen)
     update(curr,next)
     print(next)
     update(next,curr)
