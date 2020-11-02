@@ -1,9 +1,8 @@
-const width = 30
-const height = 30:
+const width = 400
+const height = 300
 let gen = 0;
 
-function update(a) {
-    b = new Array(width * height).fill(0)
+function update(a,b) {
     for (y = 0; y < height; y++) {
         yyy = y * width;
         ym1 = ((y + height - 1) % height) * width
@@ -23,7 +22,6 @@ function update(a) {
             xm1 = x
         }
     }
-    return b
 }
 
 function print(a) {
@@ -40,13 +38,19 @@ function print(a) {
     console.log("gen " + gen)
 }
 
-curr = new Array(width * height).fill(0);
-curr[30] = 1
-curr[31] = 1
-curr[32] = 1
+// curr = new Array(width * height).fill(0);
+// curr[840] = 1
+// curr[841] = 1
+// curr[842] = 1
+curr = Array.from({length: width * height},
+                  () => Math.floor(Math.random() * 2))
+next = Array.from({length: width * height},
+                  () => Math.floor(Math.random() * 2))
 while (true) {
+    console.log("gen " + gen)
+    update(curr,next)
+    print(next)
+    update(next,curr)
     print(curr)
-    next = update(curr)
-    curr = next
     gen++
 }
